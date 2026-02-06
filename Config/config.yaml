@@ -1,0 +1,30 @@
+project:
+  name: "Weather Risk AI"
+  version: "1.0.0"
+
+data:
+  location:
+    city: "Chennai"
+    latitude: 13.0827
+    longitude: 80.2707
+    elevation: 6  # meters
+  time_range:
+    start_date: "2020-01-01"
+    end_date: "2024-01-01"  # Will be overridden by 'today' in dynamic calls
+  paths:
+    raw: "Data/raw"
+    processed: "Data/processed"
+    outputs: "Data/outputs"
+
+model:
+  lstm:
+    look_back: 10
+    epochs: 20
+    batch_size: 32
+    units: 50
+    dropout: 0.2
+    validation_split: 0.1
+
+risk:
+  decay_factor: 0.8
+  propagation_iterations: 5

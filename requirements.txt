@@ -1,0 +1,12 @@
+typer
+meteostat
+networkx
+pandas
+numpy
+tensorflow
+scikit-learn
+shapely
+geopandas
+pyyaml
+python-dotenv
+pytest
