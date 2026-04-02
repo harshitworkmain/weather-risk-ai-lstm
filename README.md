@@ -1,87 +1,133 @@
-# Weather Risk AI System
+# 🌪️ Weather Risk AI System
 
-![Project Status](https://img.shields.io/badge/Status-Active-brightgreen)
+![Project Status](https://img.shields.io/badge/Status-Production%20Ready-brightgreen)
 ![Python Version](https://img.shields.io/badge/Python-3.10%2B-blue)
 ![License](https://img.shields.io/badge/License-MIT-orange)
 
-## 📌 Project Overview
-**Weather Risk AI** is an advanced, modular Python system designed to predict weather patterns and simulate urban disaster risks. Transitioning from a research-based Jupyter Notebook, this production-ready application leverages **Multivariate LSTM (Long Short-Term Memory)** neural networks for forecasting and **Graph Theory** for modeling risk propagation across city infrastructures.
+An advanced, production-grade AI system designated to forecast hyper-local weather anomalies using Deep Learning and simulate urban risk propagation—such as cascading floods or storm spread—via Graph Theory. 
 
-The system is specifically tailored for scenarios like **Chennai's flood risk management**, utilizing Directed Graphs to model water flow and wind-driven risk diffusion.
+Transitioning from local proof-of-concepts to a modular analytics pipeline, this platform is deeply tailored for major urban environments (e.g., Chennai's coastal geography), equipping city planners and emergency teams with predictive insights.
 
-## 🚀 Key Features
-- **Multivariate Weather Forecasting**: Uses LSTM models to predict Temperature (`tavg`), Precipitation, Wind Speed, and Pressure based on historical data.
-- **Dynamic Risk Propagation**: Simulates how risk (e.g., flooding, storm intensity) spreads across city zones using a **Directed Graph (DiGraph)**, accounting for physical flow directions.
-- **Storm Path Tracking**: Implements **Dijkstra's Algorithm** to predict likely storm trajectories based on pressure gradients.
-- **Flood Capacity Modeling**: Uses NetworkX **Max Flow** algorithms to estimate drainage capacity and identify bottlenecks.
-- **Meteostat Integration**: Automated ingestion of historical weather data for any coordinate.
+---
+
+## 🎯 Key Capabilities & Methodology
+
+### 1. Neural Weather Forecasting
+Leverages **Multivariate Long Short-Term Memory (LSTM)** models to detect complex temporal dependencies across diverse meteorological features (Temperature, Precipitation, Wind Speed, Pressure).
+
+> **Model Training Lifecycle**  
+> *Tracking multi-epoch convergence for optimal sequence learning.*
+> 
+> ![Training Results](Docs/images/model_training_results.png)
+
+### 2. Graph-Theoretical Risk Dynamics
+Models the city as a comprehensive **Directed Graph (DiGraph)**, where nodes represent urban zones and edges map the topological flow of natural elements (e.g., water drainage, wind corridors).
+
+> **Urban Risk Diffusion**  
+> *Visualizing how localized phenomena (like heavy rainfall) propagate to adjacent boroughs.*
+>
+> ![Risk Propagation](Docs/images/risk_propagation_graph.png)
+
+### 3. Geospatial Threat Mapping
+Visualizes static and dynamic risk metrics across distinct topologies, identifying permanent high-risk zones.
+
+> **Geospatial Hotspots**
+>
+> ![Risk Zones](Docs/images/geospatial_risk_zones.png)
+
+### 4. Flood Capacity & Network Flow
+Utilizes NetworkX's **Max Flow algorithms** to estimate optimal and strained drainage capacities across interconnected city basins.
+
+> **Flood Network Topography**
+>
+> ![Flood Risk](Docs/images/flood_risk_network.png)
+
+### 5. Storm Trajectory Prediction
+Integrates **Dijkstra's Shortest Path Algorithm** with air pressure gradient data to predict likely pathways for incoming storm cells.
+
+> **Predicted Path Algorithms**
+>
+> ![Storm Tracking](Docs/images/storm_tracking_network.png)
+
+---
 
 ## 🏗️ System Architecture
-The project follows a clean, modular `src/` layout:
+
+Our repository follows strict ML DevOps standards, isolating research from production workloads.
 
 ```text
-weather-risk-ai/
-├── Config/            # Configuration management (YAML)
-├── Data/              # Raw, Processed, and Output data storage
-├── Docs/              # Detailed module documentation
-├── Models/            # Saved LSTM checkpoints and Scalers
-├── Notebooks/         # Research sandboxes
-├── Src/               # Core Application Logic
-│   ├── ingestion/     # Data fetching (API/CSV)
-│   ├── processing/    # Cleaning, Scaling, Windowing
-│   ├── modeling/      # LSTM Architecture & Training Loop
-│   ├── analysis/      # Graph Risk, Flood & Storm Algorithms
-│   └── utils/         # Helpers
-├── Tests/             # Unit and Integration Tests
-└── main.py            # CLI Entry Point
+weather-risk-ai-lstm/
+├── Config/            # Configuration environments (YAML)
+├── Data/              # Raw ingested APIs, features, artifacts
+├── Docs/              # Module documentation and media assets
+│   └── images/        # ML visual evaluations
+├── Models/            # Persisted .keras checkpoints, robust scalers
+├── Notebooks/         # EDA and sandbox research 
+├── Src/               # Core Execution Logic
+│   ├── ingestion/     # Automations for Meteostat & API fetch
+│   ├── processing/    # Scaling, Imputation, Sliding Windows
+│   ├── modeling/      # Keras/TF Architectures
+│   ├── analysis/      # Graph & NetworkX topology algorithms
+│   └── utils/         # Telemetry & Config loader
+├── Tests/             # PyTest Integration frameworks
+└── main.py            # Master CLI Entry Point
 ```
 
-## 🛠️ Installation
+---
 
-1. **Clone the Repository**
+## 🚀 Installation
+
+Ensure you have a modern Python 3.10+ environment set up.
+
+1. **Clone the Source**
    ```bash
-   git clone https://github.com/harshitworkmain/weather-risk-ai.git
-   cd weather-risk-ai
+   git clone https://github.com/harshitworkmain/weather-risk-ai-lstm.git
+   cd weather-risk-ai-lstm
    ```
 
-2. **Install Dependencies**
+2. **Install Core Requirements**
    ```bash
    pip install -r requirements.txt
    ```
 
-3. **Set Up Configuration**
-   - Check `Config/config.yaml` to adjust city coordinates or model hyperparameters.
+3. **Configure the Environment**
+   Inspect `Config/config.yaml` to adjust city parameters, API endpoints, or model hyper-parameters (such as sequence look-back arrays or LSTM layer width).
 
-## 💻 Usage
+---
 
-The system is driven by a unified CLI tool `main.py`.
+## 💻 CLI Usage Patterns
 
-### 1. Run Full Demo
-Executes the entire pipeline: Data Fetch -> Process -> Train -> Predict -> Analyze.
+The pipeline is unified under a single robust CLI tool built tightly with Python `typer`.
+
+### Complete Integration Demo
+Executes the full local workflow seamlessly: `Ingest -> Preprocess -> Train -> Predict -> Analyze`.
 ```bash
 python main.py demo
 ```
 
-### 2. Individual Commands
-**Train the Model**:
+### Granular Execution
+**Re-Train the LSTM Model**:
 ```bash
 python main.py train
 ```
 
-**Make a Prediction**:
+**Run Autoregressive Predictions**:
 ```bash
 python main.py predict
 ```
 
-**Run Risk Analysis**:
+**Execute Urban Graph Analysis**:
 ```bash
 python main.py analyze
 ```
 
-## 👨‍💻 Author
+---
+
+## 👨‍💻 Maintainer
+
 **Harshit Singh**  
-- **GitHub**: [harshitworkmain](https://github.com/harshitworkmain)  
-- **Email**: harshit.workmain@gmail.com  
+- **GitHub**: [@harshitworkmain](https://github.com/harshitworkmain)  
+- **Contact**: harshit.workmain@gmail.com  
 
 ## 📄 License
 This project is licensed under the MIT License.
